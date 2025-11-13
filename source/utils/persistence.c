@@ -114,6 +114,12 @@ T2ERROR fetchLocalConfigs(const char* path, Vector *configList)
             T2Info("Filename : %s Size : %ld\n", entry->d_name, (long int)filestat.st_size);
 
             Config *config = (Config *)malloc(sizeof(Config));
+            if (config == NULL)
+            {
+                T2Error("Failed to allocate memory for Config structure for file: %s\n", entry->d_name);
+                close(fp);
+                continue;
+            }
             memset(config, 0, sizeof(Config));
             config->name = strdup(entry->d_name);
             config->configData = (char *)malloc((filestat.st_size + 1) * sizeof(char));
