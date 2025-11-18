@@ -1,0 +1,9 @@
+name: custom-queries
+version: 0.0.1
+dependencies:
+  codeql/cpp-all: "~0.0.1"
+
+packs:
+  custom-queries:
+    include:
+      - missing-lock.ql
